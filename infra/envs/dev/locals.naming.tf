@@ -14,5 +14,8 @@
     snet_jump = "snet-jump"
 
     la        = "law-${local.prefix}-01"
+    kv        = "kv-${local.prefix}-01"
+    uami_aks  = "uami-${local.prefix}-aks"
+    uami_appg = "uami-${local.prefix}-appgw"
   }
 }

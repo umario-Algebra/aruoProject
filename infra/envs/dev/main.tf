@@ -25,3 +25,27 @@ module "log_analytics" {
   workspace_name = local.names.la
   rg_name        = local.names.rg_core
 }
+
+module "keyvault" {
+  source   = "../../modules/keyvault"
+  location = var.location
+  rg_name  = local.names.rg_core
+  kv_name  = local.names.kv
+  tags     = var.tags
+}
+
+module "uami_aks" {
+  source   = "../../modules/identity"
+  location = var.location
+  rg_name  = local.names.rg_sec
+  name     = local.names.uami_aks
+  tags     = var.tags
+}
+
+module "uami_appg" {
+  source   = "../../modules/identity"
+  location = var.location
+  rg_name  = local.names.rg_sec
+  name     = local.names.uami_appg
+  tags     = var.tags
+}
