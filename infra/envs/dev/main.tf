@@ -61,3 +61,8 @@ module "acr" {
   acr_name = local.names.acr
   tags     = var.tags
 }
+module "rbac_acr_pull_for_aks" {
+  source       = "../../modules/rbac_acr_pull"
+  scope_id     = module.acr.id
+  principal_id = module.uami_aks.principal_id
+}
