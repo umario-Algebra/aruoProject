@@ -8,3 +8,13 @@ module "resource_groups" {
   tags     = var.tags
   names    = local.names
 }
+
+module "network" {
+  source            = "../../modules/network"
+  location          = var.location
+  tags              = var.tags
+  rg_core_name      = local.names.rg_core
+  rg_net_name       = local.names.rg_net
+  vnet_core_name    = local.names.vnet_core
+  vnet_jump_name    = local.names.vnet_jump
+}
