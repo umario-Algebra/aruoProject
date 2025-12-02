@@ -49,3 +49,8 @@ module "uami_appg" {
   name     = local.names.uami_appg
   tags     = var.tags
 }
+module "rbac_appgw_kv_secrets" {
+  source       = "../../modules/rbac_kv_secret_reader"
+  kv_id        = module.keyvault.kv_id
+  principal_id = module.uami_appg.principal_id
+}
