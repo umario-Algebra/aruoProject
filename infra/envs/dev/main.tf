@@ -54,3 +54,10 @@ module "rbac_appgw_kv_secrets" {
   kv_id        = module.keyvault.kv_id
   principal_id = module.uami_appg.principal_id
 }
+module "acr" {
+  source   = "../../modules/acr"
+  location = var.location
+  rg_name  = local.names.rg_core
+  acr_name = local.names.acr
+  tags     = var.tags
+}

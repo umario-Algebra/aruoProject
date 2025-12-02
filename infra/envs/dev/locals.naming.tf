@@ -17,5 +17,6 @@
     kv        = "kv-${local.prefix}-01"
     uami_aks  = "uami-${local.prefix}-aks"
     uami_appg = "uami-${local.prefix}-appgw"
+    acr       = "acr${replace(local.prefix, "-", "")}001"
   }
 }
