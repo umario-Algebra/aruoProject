@@ -18,3 +18,10 @@ module "network" {
   vnet_core_name    = local.names.vnet_core
   vnet_jump_name    = local.names.vnet_jump
 }
+module "log_analytics" {
+  source         = "../../modules/log_analytics"
+  location       = var.location
+  tags           = var.tags
+  workspace_name = local.names.la
+  rg_name        = local.names.rg_core
+}
