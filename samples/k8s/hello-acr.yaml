@@ -1,0 +1,31 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-acr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-acr
+  template:
+    metadata:
+      labels:
+        app: hello-acr
+    spec:
+      containers:
+      - name: web
+        image: acraruopdev001.azurecr.io/demo/hello:1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-acr
+spec:
+  type: ClusterIP
+  selector:
+    app: hello-acr
+  ports:
+  - port: 80
+    targetPort: 80

@@ -79,3 +79,8 @@ module "aks" {
   la_ws_id     = module.log_analytics.workspace_id
   tags         = var.tags
 }
+module "rbac_acr_pull_for_kubelet" {
+  source       = "../../modules/rbac_acr_pull"
+  scope_id     = module.acr.id
+  principal_id = module.aks.kubelet_id
+}
