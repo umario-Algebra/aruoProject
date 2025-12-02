@@ -18,5 +18,8 @@
     uami_aks  = "uami-${local.prefix}-aks"
     uami_appg = "uami-${local.prefix}-appgw"
     acr       = "acr${replace(local.prefix, "-", "")}001"
+
+    aks       = "aks-${local.prefix}-01"
+    aks_dns   = "aks-${replace(local.prefix, "-", "")}"
   }
 }

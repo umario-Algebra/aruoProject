@@ -66,3 +66,16 @@ module "rbac_acr_pull_for_aks" {
   scope_id     = module.acr.id
   principal_id = module.uami_aks.principal_id
 }
+module "aks" {
+  source       = "../../modules/aks"
+  location     = var.location
+  rg_name      = local.names.rg_core
+  cluster_name = local.names.aks
+  dns_prefix   = local.names.aks_dns
+  subnet_id    = module.network.snet_aks_id
+  node_size    = var.sku.aks_node_size
+  node_count   = 1
+  uami_id      = module.uami_aks.id
+  la_ws_id     = module.log_analytics.workspace_id
+  tags         = var.tags
+}
