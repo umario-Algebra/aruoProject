@@ -84,3 +84,11 @@ module "rbac_acr_pull_for_kubelet" {
   scope_id     = module.acr.id
   principal_id = module.aks.kubelet_id
 }
+module "st" {
+  source       = "../../modules/storage_account"
+  location     = var.location
+  rg_name      = local.names.rg_core
+  account_name = local.names.st
+  allow_public = true
+  tags         = var.tags
+}

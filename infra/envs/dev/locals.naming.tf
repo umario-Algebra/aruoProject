@@ -21,5 +21,7 @@
 
     aks       = "aks-${local.prefix}-01"
     aks_dns   = "aks-${replace(local.prefix, "-", "")}"
+
+    st        = "stgaruopdev001"   # <-- for Functions and artifacts
   }
 }
