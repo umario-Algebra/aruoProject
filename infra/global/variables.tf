@@ -8,7 +8,7 @@ variable "tags" {
   type = map(string)
   default = {
     university = "Algebra"
-    student    = "student@algebra.hr"
+    student    = "umario@algebra.hr"
     project    = "aruo"
     env        = "dev"
     owner      = "umario"

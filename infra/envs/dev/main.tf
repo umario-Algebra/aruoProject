@@ -1,4 +1,4 @@
-﻿terraform {
+terraform {
   backend "azurerm" {}
 }
 
@@ -10,13 +10,14 @@ module "resource_groups" {
 }
 
 module "network" {
-  source            = "../../modules/network"
-  location          = var.location
-  tags              = var.tags
-  rg_core_name      = local.names.rg_core
-  rg_net_name       = local.names.rg_net
-  vnet_core_name    = local.names.vnet_core
-  vnet_jump_name    = local.names.vnet_jump
+  source               = "../../modules/network"
+  location             = var.location
+  tags                 = var.tags
+  rg_core_name         = local.names.rg_core
+  rg_net_name          = local.names.rg_net
+  vnet_core_name       = local.names.vnet_core
+  vnet_jump_name       = local.names.vnet_jump
+  jump_rdp_source_cidr = "85.10.62.66/32"
 }
 module "log_analytics" {
   source         = "../../modules/log_analytics"
@@ -92,3 +93,29 @@ module "st" {
   allow_public = true
   tags         = var.tags
 }
+module "func_plan" {
+  source    = "../../modules/function_plan"
+  location  = var.location
+  rg_name   = local.names.rg_core
+  plan_name = local.names.funcplan
+  tags      = var.tags
+}
+module "func_app" {
+  source = "../../modules/function_app"
+
+  resource_group_name = local.names.rg_core
+  function_app_name   = local.names.funcapp
+  service_plan_id     = module.func_plan.id
+
+  # from storage_account module outputs you just fixed
+  storage_account_name = module.st.name
+  storage_account_key  = module.st.primary_access_key
+
+  location = var.location
+  tags     = var.tags
+
+  # If your module has optional inputs, wire them here (only if defined):
+  # subnet_id          = module.network.snet_func_id
+  # workspace_id       = module.log_analytics.workspace_id
+}
+

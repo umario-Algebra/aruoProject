@@ -1,4 +1,4 @@
-﻿variable "subscription_id" {
+variable "subscription_id" {
   type = string
 }
 
@@ -26,7 +26,7 @@ variable "tags" {
   type = map(string)
   default = {
     university = "Algebra"
-    student    = "student@algebra.hr"
+    student    = "umario@algebra.hr"
     project    = "aruo"
     env        = "dev"
     owner      = "umario"
@@ -36,13 +36,13 @@ variable "tags" {
 
 variable "sku" {
   type = object({
-    vm_jump_size  : string
+    vm_jump_size : string
     aks_node_size : string
-    postgres_sku  : string
-    appgw_sku     : string
-    storage_repl  : string
-    kv_sku        : string
-    acr_sku       : string
+    postgres_sku : string
+    appgw_sku : string
+    storage_repl : string
+    kv_sku : string
+    acr_sku : string
   })
 
   default = {
@@ -55,3 +55,17 @@ variable "sku" {
     acr_sku       = "Standard"
   }
 }
+
+variable "jump_admin_username" {
+  type        = string
+  default     = "localadmin"
+  description = "Admin username for the jump Windows VM."
+}
+
+variable "jump_admin_password" {
+  type        = string
+  description = "Admin password for the jump Windows VM."
+  sensitive   = true
+}
+
+

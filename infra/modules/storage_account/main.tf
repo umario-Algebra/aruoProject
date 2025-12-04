@@ -17,7 +17,7 @@ resource "azurerm_storage_account" "this" {
   access_tier              = "Hot"
 
   min_tls_version               = "TLS1_2"
-  enable_https_traffic_only     = true
+  https_traffic_only_enabled    = true
   public_network_access_enabled = var.allow_public
 
   tags = var.tags
@@ -36,7 +36,9 @@ output "primary_access_key" {
   sensitive = true
 }
 
+
 output "connection_string" {
   value     = local.primary_conn
   sensitive = true
 }
+

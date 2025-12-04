@@ -1,9 +1,9 @@
-﻿locals {
+locals {
   prefix = "aruop-${var.env}"
   names = {
-    rg_core   = "rg-${local.prefix}-core"
-    rg_net    = "rg-${local.prefix}-net"
-    rg_sec    = "rg-${local.prefix}-sec"
+    rg_core = "rg-${local.prefix}-core"
+    rg_net  = "rg-${local.prefix}-net"
+    rg_sec  = "rg-${local.prefix}-sec"
 
     vnet_core = "vnet-${local.prefix}-core"
     vnet_jump = "vnet-${local.prefix}-jump"
@@ -19,9 +19,11 @@
     uami_appg = "uami-${local.prefix}-appgw"
     acr       = "acr${replace(local.prefix, "-", "")}001"
 
-    aks       = "aks-${local.prefix}-01"
-    aks_dns   = "aks-${replace(local.prefix, "-", "")}"
+    aks     = "aks-${local.prefix}-01"
+    aks_dns = "aks-${replace(local.prefix, "-", "")}"
 
-    st        = "stgaruopdev001"   # <-- for Functions and artifacts
+    st       = "stgaruopdev001"
+    funcplan = "plan-${local.prefix}-func"
+    funcapp  = "func-${local.prefix}-hello"
   }
 }

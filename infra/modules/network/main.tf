@@ -71,9 +71,30 @@ resource "azurerm_network_security_group" "nsg_jump" {
   tags                = var.tags
 }
 
+resource "azurerm_network_security_rule" "jump_rdp" {
+  name                        = "rdp-from-home"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "3389"
+  source_address_prefix       = var.jump_rdp_source_cidr
+  destination_address_prefix  = "*"
+
+  resource_group_name         = azurerm_network_security_group.nsg_jump.resource_group_name
+  network_security_group_name = azurerm_network_security_group.nsg_jump.name
+}
+
+
 resource "azurerm_subnet_network_security_group_association" "assoc_jump" {
   subnet_id                 = azurerm_subnet.snet_jump.id
   network_security_group_id = azurerm_network_security_group.nsg_jump.id
+}
+
+variable "jump_rdp_source_cidr" {
+  type        = string
+  description = "CIDR allowed to RDP to the jump VM (e.g. x.x.x.x/32)."
 }
 
 output "vnet_core_id" { value = azurerm_virtual_network.core.id }
