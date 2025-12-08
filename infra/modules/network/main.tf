@@ -45,7 +45,19 @@ resource "azurerm_subnet" "snet_pg" {
   resource_group_name  = var.rg_core_name
   virtual_network_name = azurerm_virtual_network.core.name
   address_prefixes     = ["10.10.40.0/24"]
+
+  delegation {
+    name = "postgresql-flexible"
+
+    service_delegation {
+      name = "Microsoft.DBforPostgreSQL/flexibleServers"
+      actions = [
+        "Microsoft.Network/virtualNetworks/subnets/join/action",
+      ]
+    }
+  }
 }
+
 
 # Jump VNET
 resource "azurerm_virtual_network" "jump" {

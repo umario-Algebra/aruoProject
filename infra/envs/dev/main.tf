@@ -50,6 +50,32 @@ module "uami_appg" {
   name     = local.names.uami_appg
   tags     = var.tags
 }
+
+module "postgres" {
+  source = "../../modules/postgres_flexible"
+
+  location = "northeurope"
+  rg_name  = "rg-aruop-dev-core"
+  name     = "pg-aruop-dev-ne01"
+
+  core_vnet_id        = module.network.core_vnet_id
+  delegated_subnet_id = module.network.snet_pg_id
+
+  administrator_login    = "pgadminuser"
+  administrator_password = var.pg_admin_password
+
+  database_name = "appdb"
+
+  tags = {
+    costCenter = "000"
+    env        = "dev"
+    owner      = "umario"
+    project    = "aruo"
+    student    = "umario@algebra.hr"
+    university = "Algebra"
+  }
+}
+
 module "rbac_appgw_kv_secrets" {
   source       = "../../modules/rbac_kv_secret_reader"
   kv_id        = module.keyvault.kv_id

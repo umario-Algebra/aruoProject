@@ -68,4 +68,9 @@ variable "jump_admin_password" {
   sensitive   = true
 }
 
+variable "pg_admin_password" {
+  type        = string
+  sensitive   = true
+  description = "Admin password for the PostgreSQL Flexible Server."
+}
 
