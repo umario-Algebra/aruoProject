@@ -49,12 +49,15 @@ resource "azurerm_application_gateway" "this" {
 
   backend_address_pool {
     name = "default-backend-pool"
+	ip_addresses = [
+      "10.10.10.10"
+    ]
   }
 
   backend_http_settings {
     name                  = "http-settings-80"
     protocol              = "Http"
-    port                  = 80
+    port                  = 30080
     cookie_based_affinity = "Disabled"
     request_timeout       = 20
   }
