@@ -21,6 +21,8 @@ resource "azurerm_postgresql_flexible_server" "this" {
 
   # HACK: DB in North Europe because West Europe is blocked for this subscription
   location = "northeurope"
+  
+  zone = "2"
 
   version               = var.pg_version
   sku_name              = var.sku_name

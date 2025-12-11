@@ -126,6 +126,28 @@ module "func_plan" {
   plan_name = local.names.funcplan
   tags      = var.tags
 }
+
+module "app_gateway" {
+  source = "../../modules/app_gateway"
+
+  location  = var.location
+  rg_name   = "rg-aruop-dev-core"
+  subnet_id = module.network.snet_appgw_id
+
+  appgw_name = "agw-aruop-dev-01"
+  pip_name   = "pip-aruop-dev-appgw"
+
+  tags = {
+    costCenter = "000"
+    env        = "dev"
+    owner      = "umario"
+    project    = "aruo"
+    student    = "umario@algebra.hr"
+    university = "Algebra"
+  }
+}
+
+
 module "func_app" {
   source = "../../modules/function_app"
 
