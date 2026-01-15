@@ -1,0 +1,216 @@
+{
+  "subscriptionId": "810942a7-2810-4ca8-a634-7e7346e15d61",
+  "resourceGroups": [
+    "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+    "rg-aruop-dev-core",
+    "rg-aruop-dev-net",
+    "rg-aruop-dev-sec",
+    "rg-aruop-dev-tfstate"
+  ],
+  "count": 29,
+  "resources": [
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "aks-nodepool1-28196372-vmss",
+      "type": "Microsoft.Compute/virtualMachineScaleSets",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.Compute/virtualMachineScaleSets/aks-nodepool1-28196372-vmss"
+    },
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "aks-aruop-dev-01-agentpool",
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/aks-aruop-dev-01-agentpool"
+    },
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "omsagent-aks-aruop-dev-01",
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.ManagedIdentity/userAssignedIdentities/omsagent-aks-aruop-dev-01"
+    },
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "kubernetes",
+      "type": "Microsoft.Network/loadBalancers",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.Network/loadBalancers/kubernetes"
+    },
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "aks-agentpool-19903734-nsg",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.Network/networkSecurityGroups/aks-agentpool-19903734-nsg"
+    },
+    {
+      "resourceGroup": "MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope",
+      "name": "f54a1aa7-21ce-43ba-9ad9-c3db6cfa8c0e",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/MC_rg-aruop-dev-core_aks-aruop-dev-01_westeurope/providers/Microsoft.Network/publicIPAddresses/f54a1aa7-21ce-43ba-9ad9-c3db6cfa8c0e"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "acraruopdev001",
+      "type": "Microsoft.ContainerRegistry/registries",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.ContainerRegistry/registries/acraruopdev001"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "aks-aruop-dev-01",
+      "type": "Microsoft.ContainerService/managedClusters",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.ContainerService/managedClusters/aks-aruop-dev-01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "pg-aruop-dev-ne01",
+      "type": "Microsoft.DBforPostgreSQL/flexibleServers",
+      "location": "northeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.DBforPostgreSQL/flexibleServers/pg-aruop-dev-ne01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "kv-aruop-dev-01",
+      "type": "Microsoft.KeyVault/vaults",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.KeyVault/vaults/kv-aruop-dev-01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "agw-aruop-dev-01",
+      "type": "Microsoft.Network/applicationGateways",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Network/applicationGateways/agw-aruop-dev-01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "privatelink.postgres.database.azure.com",
+      "type": "Microsoft.Network/privateDnsZones",
+      "location": "global",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Network/privateDnsZones/privatelink.postgres.database.azure.com"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "privatelink.postgres.database.azure.com/pg-aruop-dev-ne01-core-vnet-link",
+      "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+      "location": "global",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Network/privateDnsZones/privatelink.postgres.database.azure.com/virtualNetworkLinks/pg-aruop-dev-ne01-core-vnet-link"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "pip-aruop-dev-appgw",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Network/publicIPAddresses/pip-aruop-dev-appgw"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "vnet-aruop-dev-core",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Network/virtualNetworks/vnet-aruop-dev-core"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "law-aruop-dev-01",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.OperationalInsights/workspaces/law-aruop-dev-01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "ContainerInsights(law-aruop-dev-01)",
+      "type": "Microsoft.OperationsManagement/solutions",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.OperationsManagement/solutions/ContainerInsights(law-aruop-dev-01)"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "stgaruopdev001",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Storage/storageAccounts/stgaruopdev001"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "plan-aruop-dev-func",
+      "type": "Microsoft.Web/serverFarms",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Web/serverFarms/plan-aruop-dev-func"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-core",
+      "name": "func-aruop-dev-hello",
+      "type": "Microsoft.Web/sites",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-core/providers/Microsoft.Web/sites/func-aruop-dev-hello"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "osdisk-aruop-dev-jump01",
+      "type": "Microsoft.Compute/disks",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/RG-ARUOP-DEV-NET/providers/Microsoft.Compute/disks/osdisk-aruop-dev-jump01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "vm-aruop-dev-jump01",
+      "type": "Microsoft.Compute/virtualMachines",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-net/providers/Microsoft.Compute/virtualMachines/vm-aruop-dev-jump01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "nic-aruop-dev-jump01",
+      "type": "Microsoft.Network/networkInterfaces",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-net/providers/Microsoft.Network/networkInterfaces/nic-aruop-dev-jump01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "nsg-jump",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-net/providers/Microsoft.Network/networkSecurityGroups/nsg-jump"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "pip-aruop-dev-jump01",
+      "type": "Microsoft.Network/publicIPAddresses",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-net/providers/Microsoft.Network/publicIPAddresses/pip-aruop-dev-jump01"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-net",
+      "name": "vnet-aruop-dev-jump",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-net/providers/Microsoft.Network/virtualNetworks/vnet-aruop-dev-jump"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-sec",
+      "name": "uami-aruop-dev-aks",
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-sec/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-aruop-dev-aks"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-sec",
+      "name": "uami-aruop-dev-appgw",
+      "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-sec/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uami-aruop-dev-appgw"
+    },
+    {
+      "resourceGroup": "rg-aruop-dev-tfstate",
+      "name": "stgaruopdevstate01",
+      "type": "Microsoft.Storage/storageAccounts",
+      "location": "westeurope",
+      "id": "/subscriptions/810942a7-2810-4ca8-a634-7e7346e15d61/resourceGroups/rg-aruop-dev-tfstate/providers/Microsoft.Storage/storageAccounts/stgaruopdevstate01"
+    }
+  ]
+}
