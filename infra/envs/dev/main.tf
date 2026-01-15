@@ -13,24 +13,33 @@ module "network" {
   source               = "../../modules/network"
   location             = var.location
   tags                 = var.tags
-  rg_core_name         = local.names.rg_core
-  rg_net_name          = local.names.rg_net
+
+  # VEŽEMO SE NA OUTPUTE, NE NA local.names
+  rg_core_name         = module.resource_groups.rg_core_name
+  rg_net_name          = module.resource_groups.rg_net_name
+
   vnet_core_name       = local.names.vnet_core
   vnet_jump_name       = local.names.vnet_jump
   jump_rdp_source_cidr = "85.10.62.66/32"
 }
+
 module "log_analytics" {
   source         = "../../modules/log_analytics"
   location       = var.location
   tags           = var.tags
   workspace_name = local.names.la
-  rg_name        = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name        = module.resource_groups.rg_core_name
 }
 
 module "keyvault" {
   source   = "../../modules/keyvault"
   location = var.location
-  rg_name  = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name  = module.resource_groups.rg_core_name
+
   kv_name  = local.names.kv
   tags     = var.tags
 }
@@ -38,7 +47,10 @@ module "keyvault" {
 module "uami_aks" {
   source   = "../../modules/identity"
   location = var.location
-  rg_name  = local.names.rg_sec
+
+  # SEC RG iz modula – OVO JE KRITIČNO
+  rg_name  = module.resource_groups.rg_sec_name
+
   name     = local.names.uami_aks
   tags     = var.tags
 }
@@ -46,7 +58,10 @@ module "uami_aks" {
 module "uami_appg" {
   source   = "../../modules/identity"
   location = var.location
-  rg_name  = local.names.rg_sec
+
+  # ISTO – SEC RG iz modula, ne string
+  rg_name  = module.resource_groups.rg_sec_name
+
   name     = local.names.uami_appg
   tags     = var.tags
 }
@@ -55,7 +70,10 @@ module "postgres" {
   source = "../../modules/postgres_flexible"
 
   location = "northeurope"
-  rg_name  = "rg-aruop-dev-core"
+
+  # CORE RG iz modula, ne hard-coded string
+  rg_name  = module.resource_groups.rg_core_name
+
   name     = "pg-aruop-dev-ne01"
 
   core_vnet_id        = module.network.core_vnet_id
@@ -81,22 +99,31 @@ module "rbac_appgw_kv_secrets" {
   kv_id        = module.keyvault.kv_id
   principal_id = module.uami_appg.principal_id
 }
+
 module "acr" {
   source   = "../../modules/acr"
   location = var.location
-  rg_name  = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name  = module.resource_groups.rg_core_name
+
   acr_name = local.names.acr
   tags     = var.tags
 }
+
 module "rbac_acr_pull_for_aks" {
   source       = "../../modules/rbac_acr_pull"
   scope_id     = module.acr.id
   principal_id = module.uami_aks.principal_id
 }
+
 module "aks" {
   source       = "../../modules/aks"
   location     = var.location
-  rg_name      = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name      = module.resource_groups.rg_core_name
+
   cluster_name = local.names.aks
   dns_prefix   = local.names.aks_dns
   subnet_id    = module.network.snet_aks_id
@@ -106,23 +133,32 @@ module "aks" {
   la_ws_id     = module.log_analytics.workspace_id
   tags         = var.tags
 }
+
 module "rbac_acr_pull_for_kubelet" {
   source       = "../../modules/rbac_acr_pull"
   scope_id     = module.acr.id
   principal_id = module.aks.kubelet_id
 }
+
 module "st" {
   source       = "../../modules/storage_account"
   location     = var.location
-  rg_name      = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name      = module.resource_groups.rg_core_name
+
   account_name = local.names.st
   allow_public = true
   tags         = var.tags
 }
+
 module "func_plan" {
   source    = "../../modules/function_plan"
   location  = var.location
-  rg_name   = local.names.rg_core
+
+  # CORE RG iz modula
+  rg_name   = module.resource_groups.rg_core_name
+
   plan_name = local.names.funcplan
   tags      = var.tags
 }
@@ -131,7 +167,10 @@ module "app_gateway" {
   source = "../../modules/app_gateway"
 
   location  = var.location
-  rg_name   = "rg-aruop-dev-core"
+
+  # CORE RG iz modula (umjesto hard-coded "rg-aruop-dev-core")
+  rg_name   = module.resource_groups.rg_core_name
+
   subnet_id = module.network.snet_appgw_id
 
   appgw_name = "agw-aruop-dev-01"
@@ -147,23 +186,35 @@ module "app_gateway" {
   }
 }
 
-
 module "func_app" {
   source = "../../modules/function_app"
 
-  resource_group_name = local.names.rg_core
+  # CORE RG iz modula
+  resource_group_name = module.resource_groups.rg_core_name
+
   function_app_name   = local.names.funcapp
   service_plan_id     = module.func_plan.id
 
-  # from storage_account module outputs you just fixed
   storage_account_name = module.st.name
   storage_account_key  = module.st.primary_access_key
 
   location = var.location
   tags     = var.tags
 
-  # If your module has optional inputs, wire them here (only if defined):
-  # subnet_id          = module.network.snet_func_id
-  # workspace_id       = module.log_analytics.workspace_id
+  # Ako tvoj modul podržava:
+  # subnet_id    = module.network.snet_func_id
+  # workspace_id = module.log_analytics.workspace_id
+}
+
+resource "azurerm_role_assignment" "kubelet_netcontrib_aks_subnet" {
+  scope                = module.network.snet_aks_id
+  role_definition_name = "Network Contributor"
+  principal_id         = module.aks.kubelet_object_id
+}
+
+resource "azurerm_role_assignment" "kubelet_netcontrib_ilb_subnet" {
+  scope                = module.network.snet_ilb_id
+  role_definition_name = "Network Contributor"
+  principal_id         = module.aks.kubelet_object_id
 }
 

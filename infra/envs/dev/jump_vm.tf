@@ -1,18 +1,9 @@
-# Jump VM – data sources to grab existing RG + subnet
-data "azurerm_resource_group" "rg_jump" {
-  name = "rg-aruop-dev-net"
-}
-
-data "azurerm_subnet" "snet_jump" {
-  name                 = "snet-jump"
-  virtual_network_name = "vnet-aruop-dev-jump"
-  resource_group_name  = data.azurerm_resource_group.rg_jump.name
-}
+# Jump VM – sve iz Terraform modula (RG, VNET, subnet)
 
 resource "azurerm_public_ip" "jump" {
   name                = "pip-aruop-dev-jump01"
-  location            = data.azurerm_resource_group.rg_jump.location
-  resource_group_name = data.azurerm_resource_group.rg_jump.name
+  location            = var.location
+  resource_group_name = module.resource_groups.rg_net_name
 
   allocation_method = "Static"
   sku               = "Standard"
@@ -29,12 +20,12 @@ resource "azurerm_public_ip" "jump" {
 
 resource "azurerm_network_interface" "jump" {
   name                = "nic-aruop-dev-jump01"
-  location            = data.azurerm_resource_group.rg_jump.location
-  resource_group_name = data.azurerm_resource_group.rg_jump.name
+  location            = var.location
+  resource_group_name = module.resource_groups.rg_net_name
 
   ip_configuration {
     name                          = "ipconfig1"
-    subnet_id                     = data.azurerm_subnet.snet_jump.id
+    subnet_id                     = module.network.snet_jump_id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.jump.id
   }
@@ -52,8 +43,8 @@ resource "azurerm_network_interface" "jump" {
 resource "azurerm_windows_virtual_machine" "jump" {
   name                = "vm-aruop-dev-jump01"
   computer_name       = "aruopjump01"
-  location            = data.azurerm_resource_group.rg_jump.location
-  resource_group_name = data.azurerm_resource_group.rg_jump.name
+  location            = var.location
+  resource_group_name = module.resource_groups.rg_net_name
   size                = "Standard_B2ms"
 
   admin_username = var.jump_admin_username

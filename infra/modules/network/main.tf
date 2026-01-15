@@ -26,6 +26,13 @@ resource "azurerm_subnet" "snet_aks" {
   address_prefixes     = ["10.10.10.0/24"]
 }
 
+resource "azurerm_subnet" "snet_ilb" {
+  name                 = "snet-ilb"
+  resource_group_name  = var.rg_core_name
+  virtual_network_name = azurerm_virtual_network.core.name
+  address_prefixes     = ["10.10.50.0/24"]
+}
+
 resource "azurerm_subnet" "snet_appgw" {
   name                 = "snet-appgw"
   resource_group_name  = var.rg_core_name
